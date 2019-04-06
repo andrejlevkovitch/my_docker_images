@@ -10,7 +10,7 @@ WORKDIR /MySettings
 
 RUN git clone https://github.com/andrejlevkovitch/MySettings.git
 WORKDIR /MySettings/MySettings/scripts
-RUN ./install_light
+RUN ./install_packages --qt
 RUN rm -rf /MySettings
 
 RUN useradd -ms /home/user user
