@@ -33,7 +33,7 @@ RUN apt-get install -y \
 RUN mkdir /usr/include/lua5.3/lib && \
     ln -sf /usr/lib/x86_64-linux-gnu/liblua5.3.so /usr/include/lua5.3/lib/liblua.so && \
     ln -sf /usr/lib/x86_64-linux-gnu/liblua5.3.a  /usr/include/lua5.3/lib/liblua.a && \
-    ln -sf /usr/lib/lua5.3                        /usr/include/lua5.3/include
+    ln -sf /usr/include/lua5.3                    /usr/include/lua5.3/include
 
 
 RUN wget "https://github.com/Kitware/CMake/releases/download/v3.14.1/cmake-3.14.1.tar.gz" && \
@@ -98,11 +98,12 @@ RUN useradd -ms /home/user user
 USER user
 
 RUN ./MySettings/scripts/install_packages --settings
+
+RUN echo "\nset encoding=utf-8" >> /home/user/.vimrc
     
 USER root
 RUN rm -rf MySettings
 RUN apt-get autoremove -y gcc-8 g++-8
-
 
 USER user
 WORKDIR /home/user
